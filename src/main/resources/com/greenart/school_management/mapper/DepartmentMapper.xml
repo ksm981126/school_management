@@ -33,4 +33,8 @@
         insert into bachelor_management.department_history(deph_type,deph_content,deph_di_seq)
         values(#{deph_type},#{deph_content},#{deph_di_seq})
     </insert>
+
+    <select id="getDepartmentByKeyword" resultType="com.greenart.school_management.data.DepartmentVo">
+        select di_seq, di_name, di_status from department_info where di_name like #{keyword}
+    </select>
 </mapper>
