@@ -48,7 +48,7 @@ $(function(){
         })
     })
     $("#add_dep").click(function(){
-        let teacher_dep_name= $("#teacher_dep_name").attr("tata-dep-seq");
+        let teacher_dep_name= $("#teacher_dep_name").attr("data-dep-seq");
         let teacher_name= $("#teacher_name").val();
         let teacher_number= $("#teacher_number").val();
         let teacher_pwd= $("#teacher_pwd").val();

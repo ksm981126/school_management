@@ -11,7 +11,6 @@ pageEncoding="UTF-8"%>
         <%@include file="/WEB-INF/includes/header.jsp"%>
         <script src="/assets/js/teacher.js"></script>
         <link rel="stylesheet" href="/assets/css/department_list.css">
-
         <link rel="stylesheet" href="/assets/css/teacher_list.css">
 </head>
 <body>
@@ -21,7 +20,7 @@ pageEncoding="UTF-8"%>
         <div class="content_area">
             <div class="menu_area">
                 <div class="search_box">
-                    <select id="search_type">
+                    <select id="search_type"> 
                         <option value="dept">학과</option>
                         <option value="name"
                             <c:if test="${data.type=='name'}">selected</c:if>
@@ -105,13 +104,13 @@ pageEncoding="UTF-8"%>
         <div class="popup" id="department_add">
             <div class="top_area">
                 <div class="ico">
-                    <i class="fas fa-school"></i>
+                    <i class="fas fa-user-tie"></i>
                 </div>
                 <h2>교직원 추가</h2>
                 <p>교직원 정보를 입력해주세요.</p>
             </div>
             <div class="content_area">
-                <input type="text" id="teacher_dep_name" placeholder="학과 명">
+                <input type="text" id="teacher_dep_name" placeholder="학과 명" disabled>
                 <button id="search_dep">학과 검색</button>
                 <br>
                 <input type="text" id="teacher_name" placeholder="교직원명">
@@ -138,11 +137,10 @@ pageEncoding="UTF-8"%>
     <div class="department_search">
         <div class="dep_search_box">
             <input type="text" id="dep_keyword" placeholder="예) 컴퓨터,컴퓨터공학,공학">
-            <button><i class="fas fa-search"></i></button>
+            <button id="dep_search_btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="search_result">
             <ul>
-                
             </ul>
         </div>
         <div class="dep_search_buttons">
