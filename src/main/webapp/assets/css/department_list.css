@@ -51,8 +51,9 @@ font-size: 20; cursor: pointer;}
 
 #nodata {
     font-size: 20px; font-weight: 700; color: #999;
-    padding: 20 0px;  background-color: (255,255,255,0.5);
+    padding: 20px 0;  background-color: (255,255,255,0.5);
 }
+
 .popup_wrap{
     position: fixed; width: 100vw; height: 100vh; left: 0; top: 0;
     background-color: rgba(0,0,0,0.3); display: none;
@@ -72,12 +73,12 @@ font-size: 20; cursor: pointer;}
 .popup .top_area h2 {margin-top: 20px; font-size: 24px;}
 .popup .top_area p {margin-top:10px; color: #555;}
 
-.popup.content_area {padding: 40px 0; width: 350px; margin: 0 auto; font-size: 0;
+.popup .content_area {padding: 40px 0; width: 350px; margin:0 auto; font-size: 0;
     padding-bottom: 20px;
 }
 #dep_name, #dep_score, #dep_status {width: 100%; padding: 0; margin: 0; border: 1px solid #ccc;
-    font-size: 20px; font-weight: 400; padding: 10px 20px; box-sizing: border-box;
-    border-radius: 100px; margin-bottom: 15px;
+    font-size: 16px; font-weight: 400; padding: 10px 20px; box-sizing: border-box;
+    border-radius: 15px; margin-bottom: 15px; outline: none;
 }
 #dep_score {width: 200px; border-radius: 15px 0 0 15px;}
 #dep_status {width: 150px; border-radius: 0 15px 15px 0; border-left: 0 solid #000;
