@@ -1,5 +1,7 @@
 package com.greenart.school_management.mapper;
 
+import java.util.Date;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -21,4 +23,7 @@ public interface DashboardMapper {
     public Integer getActiveSubjectCnt();
     public Integer getDeactiveSubjectCnt();
     public Integer getFinishSubjectCnt();
+
+    public Date getDepartmentUpdateDate();
+    public Date getTeacherUpdateDate();
 }

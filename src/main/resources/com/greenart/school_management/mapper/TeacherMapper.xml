@@ -2,40 +2,73 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.greenart.school_management.mapper.TeacherMapper">
-<insert id="addTeacherInfo">
-INSERT INTO bachelor_management.teacher_info
-(ti_di_seq, ti_number, ti_name, ti_birth, ti_pwd, ti_phone_num, ti_email,ti_status)
-VALUES
-(#{ti_di_seq}, #{ti_number}, #{ti_name}, #{ti_birth}, #{ti_pwd}, #{ti_phone_num}, #{ti_email},#{ti_status});
-</insert>
-<select id="getTeacherList" resultType="com.greenart.school_management.data.TeacherVo">
-select ti_seq, department_name,ti_number,ti_name,ti_birth,ti_phone_num,ti_email,ti_reg_dt,ti_mod_dt,ti_status from
-(
-    select a.*, b.di_name as department_name 
-    from teacher_info a left outer join department_info b 
-    on a.ti_di_seq =b.di_seq
-)c
-<if test="type == 'dept'">
-where department_name like #{keyword}
-</if>
-<if test="type == 'name'">
-where ti_name like #{keyword}
-</if>
-order by ti_seq desc 
-limit 10 offset #{offset}
-</select>
-<select id="getTeacherCnt" resultType="java.lang.Integer">
-select count(*)from
-(
-    select a.*, b.di_name as department_name 
-    from teacher_info a left outer join department_info b 
-    on a.ti_di_seq =b.di_seq
-)c
-<if test="type == 'dept'">
-where department_name like #{keyword}
-</if>
-<if test="type == 'name'">
-where ti_name like #{keyword}
-</if>
-</select>
+    <insert id="addTeacherInfo">
+    INSERT INTO bachelor_management.teacher_info
+    (ti_di_seq, ti_number, ti_name, ti_birth, ti_pwd, ti_phone_num, ti_email,ti_status)
+    VALUES
+    (#{ti_di_seq}, #{ti_number}, #{ti_name}, #{ti_birth}, #{ti_pwd}, #{ti_phone_num}, #{ti_email},#{ti_status});
+    </insert>
+    <select id="getTeacherList" resultType="com.greenart.school_management.data.TeacherVo">
+    select ti_seq, department_name,ti_number,ti_name,ti_birth,ti_phone_num,ti_email,ti_reg_dt,ti_mod_dt,ti_status from
+    (
+        select a.*, b.di_name as department_name 
+        from teacher_info a left outer join department_info b 
+        on a.ti_di_seq =b.di_seq
+    )c
+    <if test="type == 'dept'">
+        where department_name like #{keyword}
+    </if>
+    <if test="type == 'name'">
+        where ti_name like #{keyword}
+    </if>
+        order by ti_seq desc 
+        limit 10 offset #{offset}
+    </select>
+    <select id="getTeacherCnt" resultType="java.lang.Integer">
+        select count(*)from
+        (
+            select a.*, b.di_name as department_name 
+            from teacher_info a left outer join department_info b 
+            on a.ti_di_seq =b.di_seq
+        )c
+    <if test="type == 'dept'">
+        where department_name like #{keyword}
+    </if>
+    <if test="type == 'name'">
+        where ti_name like #{keyword}
+    </if>
+    </select>
+    <delete id="deleteTeacherInfo">
+        delete from teacher_info where ti_seq = #{seq}
+    </delete>
+    <select id="isExistTeacher" resultType="java.lang.Integer">
+        select count(*) from teacher_info where ti_seq =#{seq}
+    </select>
+    <select id="getTeacherInfoBySeq" resultType="com.greenart.school_management.data.TeacherVo">
+        select 
+            ti_seq, ti_di_seq, ti_number, ti_name,ti_birth,
+            ti_phone_num,ti_email,ti_status,di_name as department_name 
+        from 
+            teacher_info a left outer join department_info b 
+        on 
+            a.ti_di_seq =b.di_seq
+        where 
+            ti_seq=#{seq}
+    </select>
+    <update id="updateTeacherInfo">
+        update
+            teacher_info
+        set
+        ti_di_seq =#{ti_di_seq},ti_name=#{ti_name},ti_number=#{ti_number},ti_birth=#{ti_birth},ti_phone_num=#{ti_phone_num},ti_email=#{ti_email},ti_status=#{ti_status}, ti_mod_dt =now()
+        where ti_seq =#{ti_seq}
+    </update>
+    <insert id="insertTeacherHistory">
+        insert into teacher_info_history
+        (tih_ti_seq,tih_type,tih_content)
+        VALUES
+        (#{tih_ti_seq},#{tih_type},#{tih_content})
+    </insert>
+    <select id="getRecentAddedTeacherSeq" resultType="java.lang.Integer">
+        select ti_seq from teacher_info order by ti_seq desc limit 1
+    </select>
 </mapper>
